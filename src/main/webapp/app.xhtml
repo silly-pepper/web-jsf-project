@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:a="http://java.sun.com/jsf/composite"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:custom="http://java.sun.com/jsf/composite/"
+      xmlns:jsf="http://xmlns.jcp.org/jsf">
+<h:head>
+    <h:outputStylesheet library="css" name="app.css"/>
+    <h:outputStylesheet library="css" name="navigation.css"/>
+
+</h:head>
+<h:body>
+    <div id="container">
+        <div id="nav_section">
+            <div id="nav_index">
+                <h:form>
+                    <h:commandLink action="toIndex" value="Главная"/>
+                </h:form>
+            </div>
+        </div>
+        <table id="layout" style="width: 100%">
+            <thead>
+            <tr>
+                <td colspan="2">
+                    Чернова Елизавета Александровна P32302
+                </td>
+            </tr>
+
+            </thead>
+            <tbody>
+            <tr>
+                <td>
+                    <p class="center-labeled head-label">
+                        Таблица результатов
+                    </p>
+                    <div style="max-height: 500px; overflow-y: auto">
+                        <h:panelGroup id="panel">
+                            <p:dataTable styleClass="outputTable" value="#{resultTableView.hitResultList}" var="result" emptyMessage="Данных нет!">
+                                <p:column>
+                                    <f:facet name="header">X</f:facet>
+                                    ${result.x}
+                                </p:column>
+                                <p:column>
+                                    <f:facet name="header">Y</f:facet>
+                                    ${result.y}
+                                </p:column>
+                                <p:column>
+                                    <f:facet name="header">R</f:facet>
+                                    ${result.r}
+                                </p:column>
+                                <p:column>
+                                    <f:facet name="header">Время</f:facet>
+                                    ${result.currentTime}
+                                </p:column>
+                                <p:column>
+                                    <f:facet name="header">Время обработки</f:facet>
+                                    ${result.time} нс
+                                </p:column>
+                                <p:column>
+                                    <f:facet name="header">Попадание</f:facet>
+                                    ${result.result ? "Да" : "Нет"}
+                                </p:column>
+                            </p:dataTable>
+                        </h:panelGroup>
+                    </div>
+                </td>
+                <td >
+                    <p class="center-labeled head-label">
+                        Ввод данных
+                    </p>
+                    <div id="area_svg" >
+                        <ui:include  src="svg.xhtml"/>
+
+                    </div>
+
+                    <h:form id="input-f">
+                        <div id = "x">
+                            <p:outputLabel>Выберите x:</p:outputLabel>
+                            <p:panelGrid columns="2">
+                                <p:spinner name="x" maxlength="17" min="-3" max="3" placeholder="(-3..3)" id="coord-x"
+                                           value="#{resultTableView.newResult.x}">
+
+                                </p:spinner>
+                            </p:panelGrid>
+                            <p class= "error-msg" id="x-error"></p>
+
+                        </div>
+                        <div id = "y">
+                            <h:outputLabel>Допустимые значения Y: (-3 ... 5)</h:outputLabel>
+                            <p:panelGrid columns="2" >
+                                <p:inputText maxlength="17" name="y" id="coord-y"
+                                             placeholder="(-3..5)" value="#{resultTableView.newResult.y}">
+                                </p:inputText>
+                            </p:panelGrid>
+
+
+                        </div>
+                        <div id = "r">
+                            <h:outputLabel for="coord-r" value="Выберите R:"/>
+                            <p class= "error-msg" id="r-error"></p>
+
+                            <p:panelGrid columns="2">
+                                <h:selectOneRadio id="coord-r" value="#{resultTableView.newResult.r}">
+                                    <f:selectItem class="checkGroup" itemValue="1" itemLabel="1" />
+                                    <f:selectItem class="checkGroup" itemValue="2" itemLabel="2"/>
+                                    <f:selectItem class="checkGroup" itemValue="3" itemLabel="3"/>
+                                    <f:selectItem class="checkGroup" itemValue="4" itemLabel="4"/>
+                                    <f:selectItem class="checkGroup" itemValue="5" itemLabel="5"/>
+                                    <f:validateRequired/>
+                                </h:selectOneRadio >
+                            </p:panelGrid>
+                        </div>
+                        <div>
+                            <div>
+                                <p:commandButton id="submitBtn" action="#{resultTableView.submitResults}" type="submit"
+                                                 value="Проверить" update="panel">
+                                    <f:ajax execute="input-f" render="panel"/>
+                                </p:commandButton>
+                            </div>
+                            <div style="padding: 10px">
+                                <p:commandButton id="clearBtn" type="submit" value="Очистить"
+                                                 action="#{resultTableView.clearTable()}" update="panel">
+                                    <f:ajax execute="input-f" render="panel"/>
+                                </p:commandButton>
+                            </div>
+                        </div>
+
+                    </h:form>
+                </td>
+
+
+            </tr>
+            </tbody>
+
+        </table>
+    </div>
+    <h:outputScript library="js" name="app.js"/>
+    <h:outputScript library="js" name="jquery-3.6.0.min.js"/>
+</h:body>
+</html>

@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Created by IntelliJ IDEA.
+  User: Lisa
+  Date: 05.12.2022
+  Time: 15:57
+-->
+<!DOCTYPE html
+        PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+<h:head>
+    <title>Лабораторная работа №3</title>
+    <h:outputStylesheet library="css" name="index.css"/>
+    <h:link href='https://fonts.googleapis.com/css?family=Orbitron' rel='stylesheet' type='text/css'/>
+    <h:link href="https://fonts.googleapis.com/css2?family=Dancing" rel="stylesheet"/>
+
+</h:head>
+<h:body>
+    <div class="content">
+        <form class="form" method="post" action="${pageContext.request.contextPath}/login">
+            <label for="login">Login:</label>
+            <input id="login" type="text" name="login"/>
+            <label for="password">Password:</label>
+            <input id="password" type="password" name="password"/>
+            <button class="ui-button" name="test_button" type="submit">Log in</button>
+        </form>
+        <h:form>
+            <h:commandLink action="toRegistration" value="toRegistration"/>
+    </h:form>
+    </div>
+
+<!--    <div id="container">-->
+<!--&lt;!&ndash;        <div id="header">&ndash;&gt;-->
+<!--&lt;!&ndash;            <ui:include src="header.xhtml"></ui:include>&ndash;&gt;-->
+<!--&lt;!&ndash;        </div>&ndash;&gt;-->
+<!--        <div>-->
+<!--            <ui:include src="navigation.xhtml"></ui:include>-->
+<!--        </div>-->
+<!--    </div>-->
+<!--        <table id="layout" >-->
+
+
+<!--            <tbody>-->
+<!--            <tr>-->
+<!--                <td>-->
+<!--&lt;!&ndash;                    <div class="clock_bg">&ndash;&gt;-->
+<!--&lt;!&ndash;                        <span class="clock_text"></span>&ndash;&gt;-->
+<!--&lt;!&ndash;                        <div id="clock"></div>&ndash;&gt;-->
+<!--&lt;!&ndash;                        <span class="clock_text">Дата</span>&ndash;&gt;-->
+<!--&lt;!&ndash;                        <div id="date"></div>&ndash;&gt;-->
+<!--&lt;!&ndash;                    </div>&ndash;&gt;-->
+
+<!--                </td>-->
+
+<!--            </tr>-->
+
+<!--            </tbody>-->
+<!--            <tfoot>-->
+<!--            <tr>-->
+<!--                <td colspan="2">-->
+<!--                    Чернова Елизавета Александровна, Агадилова Малика P33302-->
+<!--                </td>-->
+<!--            </tr>-->
+
+<!--            </tfoot>-->
+<!--        </table>-->
+
+
+    <h:outputScript library="js" name="clock.js"/>
+</h:body>
+</html>

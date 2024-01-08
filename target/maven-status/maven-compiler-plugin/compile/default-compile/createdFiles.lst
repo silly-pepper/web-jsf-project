@@ -1,0 +1,6 @@
+model\entity\Result.class
+beans\TimeBean.class
+services\DataValidator.class
+services\HitValidator.class
+view\ResultTableView.class
+model\dao\HitResult.class
