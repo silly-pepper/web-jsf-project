@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Created by IntelliJ IDEA.
+  User: Lisa
+  Date: 05.12.2022
+  Time: 15:57
+-->
+<!DOCTYPE html
+        PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:a="http://java.sun.com/jsf/composite"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:custom="http://java.sun.com/jsf/composite/"
+      xmlns:jsf="http://xmlns.jcp.org/jsf">
+<h:head>
+    <title>Лабораторная работа №3</title>
+    <h:outputStylesheet library="css" name="index.css"/>
+    <h:link href='https://fonts.googleapis.com/css?family=Orbitron' rel='stylesheet' type='text/css'/>
+    <h:link href="https://fonts.googleapis.com/css2?family=Dancing" rel="stylesheet"/>
+
+</h:head>
+
+<h:body>
+    <h:form id="userSpacesuitDataForm">
+        <h:panelGrid columns="2">
+            <h:outputLabel for="head">Head:</h:outputLabel>
+            <h:inputText id="head" value="#{userDataDAO.newSC.head}" required="true" />
+
+            <h:outputLabel for="chest">Chest:</h:outputLabel>
+            <h:inputText id="chest" value="#{userDataDAO.newSC.chest}" required="true" />
+
+            <h:outputLabel for="waist">Waist:</h:outputLabel>
+            <h:inputText id="waist" value="#{userDataDAO.newSC.waist}" required="true" />
+
+            <h:outputLabel for="hips">Hips:</h:outputLabel>
+            <h:inputText id="hips" value="#{userDataDAO.newSC.hips}" required="true" />
+
+            <h:outputLabel for="footSize">Foot Size:</h:outputLabel>
+            <h:inputText id="footSize" value="#{userDataDAO.newSC.footSize}" required="true" />
+
+            <h:outputLabel for="height">Height:</h:outputLabel>
+            <h:inputText id="height" value="#{userDataDAO.newSC.height}" required="true">
+                <f:validateLongRange minimum="1" maximum="300"/>
+            </h:inputText>
+
+            <h:outputLabel for="fabricTextureId">Fabric Texture ID:</h:outputLabel>
+            <h:inputText id="fabricTextureId" value="#{userDataDAO.newSC.fabricTexture}" required="true" />
+
+            <div>
+                <p:commandButton id="submitBtn" action="#{userDataDAO.addNewSC}"  type="submit"
+                                 value="отправить" >
+                    <f:ajax execute="userSpacesuitDataForm" />
+                </p:commandButton>
+            </div>
+        </h:panelGrid>
+    </h:form>
+    <h:outputScript library="js" name="jquery-3.6.0.min.js"/>
+</h:body>
+
+
+</html>
